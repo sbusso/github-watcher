@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <title>Github Search</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    </head>
+    <body>
+        <div class='container' id='feed'>
+        <h1>Github Updates ( {{ terms }} / {{ language }} )</h1>
+        
+        {% for repo in repositories %}
+            <div class='row'>
+            <a href="{{repo.url}}">
+                <h3>{{ repo.name }} ({{ repo.stars }})</h2>
+            </a>
+            <p>{{ repo.description | prettyprint | paragraph }}</p>
+           
+            </div>
+        {% endfor %}
+        
+        </div>
+    </body>
+</html>
