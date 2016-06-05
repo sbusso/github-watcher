@@ -9,7 +9,7 @@ describe Github::Watcher do
 
   it "should get an array of repositories" do
     VCR.use_cassette('github') do
-      expect(client.search('smtp', 'go')).to be_a(Array)
+      expect(client.search('smtp server', 'go', 90)).to be_a(Array)
     end
   end
 
