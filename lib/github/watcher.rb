@@ -17,7 +17,19 @@ module Github
       
       # Retrieve top repositories
       def search(terms, language, duration = 360)
-        Octokit.search_repositories("#{terms} in:name,description,readme pushed:>=#{Date.today-duration} language:#{language}").items.map{|r| {name: r[:name], description: r[:description], url: r[:html_url], stars: r[:stargazers_count]}}.select{|r| r[:stars] > 0 }.sort {|r1,r2|  r2[:stars] <=> r1[:stars]}
+        Octokit.search_repositories("#{terms} in:name,description,readme pushed:>=#{Date.today-duration} language:#{language}")
+          .items.map{|r| 
+            {
+              id: r[:id],
+              name: r[:name], 
+              description: r[:description], 
+              url: r[:html_url], 
+              stars: r[:stargazers_count],
+              homepage: r[:homepage],
+              reference: r[:full_name],
+              issues: r[:open_issues_count]
+            }
+           }.select{|r| r[:stars] > 0 }.sort {|r1,r2|  r2[:stars] <=> r1[:stars]}
       end
       
       # Export HTML
