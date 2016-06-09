@@ -19,6 +19,7 @@ module Github
       def search(terms, language, duration = 360)
         Octokit.search_repositories("#{terms} in:name,description,readme pushed:>=#{Date.today-duration} language:#{language}")
           .items.map{|r| 
+            puts r
             {
               id: r[:id],
               name: r[:name], 
