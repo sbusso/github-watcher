@@ -27,7 +27,8 @@ module Github
               stars: r[:stargazers_count],
               homepage: r[:homepage],
               reference: r[:full_name],
-              issues: r[:open_issues_count]
+              issues: r[:open_issues_count],
+              pushed_at: r[:pushed_at]
             }
            }.select{|r| r[:stars] > 0 }.sort {|r1,r2|  r2[:stars] <=> r1[:stars]}
       end
